@@ -1,5 +1,9 @@
 # Uchwyt Insta360 GO Ultra dla psa (whippet Bianka)
 
+> **Zalecana wersja: [v2](v2/)**. Drukuje się bez podpór (dwie części na
+> złączu GoPro, płaska baza, przeplatana taśma). Opisana tu v1 jest jedną
+> bryłą z zakrzywioną bazą i wymaga podpór pod spodem.
+
 Parametryczny model OpenSCAD do druku 3D. Uchwyt nasuwa się na taśmę szelek
 albo obroży, a kamerę wsuwa się od góry, aż zatrzaśnie się na sprężystym
 języczku.
