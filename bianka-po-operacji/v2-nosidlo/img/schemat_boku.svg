@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" width="960" height="720" font-family="Helvetica, Arial, sans-serif">
+  <title>Nosidło-przytulak dla Bianki: widok z boku</title>
+  <rect width="960" height="720" fill="#ffffff"/>
+
+  <!-- ===================== Człowiek (profil, przodem w prawo) ===================== -->
+  <g fill="#d5dae0" stroke="#8f98a3" stroke-width="2" stroke-linejoin="round">
+    <!-- nogi -->
+    <path d="M352 372 L340 520 L336 668 L372 668 L378 520 L392 400 Z"/>
+    <path d="M384 380 L412 520 L430 664 L462 662 L444 516 L420 372 Z"/>
+    <!-- tułów -->
+    <path d="M338 160 C326 210 322 290 334 330 C338 356 344 372 352 384 L418 384 C424 360 428 330 426 300
+             C424 270 432 240 432 212 C432 186 420 166 404 156 Z"/>
+    <!-- szyja i głowa -->
+    <path d="M366 120 L370 160 L400 160 L398 122 Z"/>
+    <circle cx="384" cy="86" r="40"/>
+    <path d="M422 80 L436 96 L422 100 Z"/>
+    <!-- stopy -->
+    <path d="M336 668 L336 678 L390 678 L384 664 Z"/>
+    <path d="M430 664 L430 676 L486 676 L476 660 Z"/>
+  </g>
+
+  <!-- ===================== Pas biodrowy i siedzisko ===================== -->
+  <g stroke="#2a2e35" stroke-width="2" stroke-linejoin="round">
+    <path d="M330 286 L428 286 L428 326 L332 326 Z" fill="#3a3f47"/>
+    <!-- sztywne siedzisko, lekko uniesione na zewnętrznym brzegu -->
+    <path d="M426 288 L516 280 L520 316 L426 328 Z" fill="#4a505a"/>
+    <!-- poduszka z wałkiem -->
+    <path d="M426 276 L512 268 L514 282 L426 290 Z" fill="#9aa3ae"/>
+    <circle cx="510" cy="266" r="11" fill="#9aa3ae"/>
+  </g>
+
+  <!-- ===================== Bianka (siedzi przodem do człowieka) ===================== -->
+  <g fill="#e3c6a1" stroke="#a5825a" stroke-width="2" stroke-linejoin="round">
+    <!-- ogon -->
+    <path d="M520 266 C538 276 536 304 526 320 C522 328 530 332 534 324 C546 302 546 268 522 254 Z"/>
+    <!-- tułów: zad, podkasany brzuch, głęboka klatka oparta o człowieka -->
+    <path d="M506 280 C532 268 534 232 518 214 C508 184 496 150 480 126
+             C468 108 450 102 438 110 C428 124 430 150 432 172
+             C434 194 434 208 444 222 C454 236 460 252 472 264 C482 274 494 282 506 280 Z"/>
+  </g>
+
+  <!-- ===================== Panel i szelki nosidła ===================== -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M518 286 C536 264 534 228 520 210 C510 184 498 160 484 146" stroke="#2b8ca3" stroke-width="12" opacity="0.92"/>
+    <path d="M484 146 C460 140 432 150 414 160 C394 170 360 172 346 180" stroke="#2b8ca3" stroke-width="9"/>
+    <path d="M346 180 C338 214 336 252 338 288" stroke="#2b8ca3" stroke-width="9" stroke-dasharray="2 10" opacity="0.8"/>
+  </g>
+
+  <!-- ręka człowieka luźno wzdłuż boku: ręce zostają wolne -->
+  <path d="M362 170 C352 210 352 250 358 300 C360 320 364 336 370 348 C378 352 386 348 384 338
+           C378 318 376 296 376 270 C378 240 384 206 388 178 Z" fill="#c8ced6" stroke="#8f98a3" stroke-width="2"/>
+
+  <!-- poduszka podróżna "rogal" na lewym ramieniu -->
+  <path d="M346 168 C344 152 360 146 380 148 L420 152 C428 160 424 172 414 174 L362 176 C354 176 348 174 346 168 Z"
+        fill="#9aa3ae" stroke="#5d626b" stroke-width="2"/>
+
+  <g fill="#e3c6a1" stroke="#a5825a" stroke-width="2" stroke-linejoin="round">
+    <!-- prawa przednia: ramię od barku Bianki -->
+    <path d="M452 140 C444 132 432 132 424 138 L414 148 L428 162 C438 158 448 154 454 150 Z"/>
+    <!-- szyja i głowa: broda oparta na własnej łapie na Twoim ramieniu -->
+    <path d="M470 124 C458 104 436 100 420 108 L410 132 C426 132 446 136 458 146 Z"/>
+    <path d="M428 104 C412 96 392 102 386 114 L340 136 C334 140 338 147 345 146 L392 140 C410 140 426 132 430 118 Z"/>
+    <path d="M420 104 C430 98 442 102 444 112 C436 114 428 114 420 112 Z" fill="#c9a77d"/>
+  </g>
+  <circle cx="341" cy="140" r="4" fill="#2a2a2a"/>
+  <circle cx="404" cy="114" r="3" fill="#2a2a2a"/>
+  <!-- opatrunek -->
+  <path d="M424 142 L366 150 C354 152 352 166 364 168 L426 158 Z" fill="#d63384" stroke="#9c1f5e" stroke-width="2"/>
+
+  <!-- prawa tylna złożona na siedzisku (rysowana na wierzchu) -->
+  <g fill="#e3c6a1" stroke="#a5825a" stroke-width="2" stroke-linejoin="round">
+    <path d="M500 246 C484 234 458 238 448 250 C442 262 452 268 466 266 C480 264 494 262 502 258 Z"/>
+    <path d="M450 258 L484 270 L486 276 L444 276 Z"/>
+    <path d="M446 270 L434 272 C430 276 434 280 440 279 L450 278 Z"/>
+  </g>
+
+  <!-- szelki Bianki i linka asekuracyjna -->
+  <path d="M496 182 C480 176 458 180 440 190" stroke="#c0392b" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <circle cx="497" cy="175" r="6" fill="none" stroke="#7f8c8d" stroke-width="3"/>
+  <path d="M497 169 C500 160 494 150 486 148" stroke="#c0392b" stroke-width="3" fill="none" stroke-dasharray="5 3"/>
+
+  <!-- ===================== Opisy ===================== -->
+  <g font-size="15" fill="#1f2328">
+    <text x="480" y="36" font-size="20" font-weight="bold" text-anchor="middle">Nosidło-przytulak: Bianka siedzi na siedzisku przodem do Ciebie</text>
+  </g>
+  <g stroke="#6b7280" stroke-width="1.2" fill="none">
+    <polyline points="560,92 452,92 408,118"/>
+    <polyline points="560,130 520,130 498,166"/>
+    <polyline points="560,192 448,192 438,196"/>
+    <polyline points="560,230 534,230 530,232"/>
+    <polyline points="560,258 478,258 470,268"/>
+    <polyline points="560,288 524,288 512,270"/>
+    <polyline points="560,318 520,318 516,306"/>
+    <polyline points="250,140 300,140 372,158"/>
+    <polyline points="250,236 340,236"/>
+    <polyline points="250,306 334,306"/>
+    <polyline points="250,370 368,340"/>
+  </g>
+  <g font-size="14.5" fill="#1f2328">
+    <text x="566" y="88">Broda na Twoim lewym ramieniu,</text>
+    <text x="566" y="105">tak blisko, że możesz ją pocałować w czoło</text>
+
+    <text x="566" y="126">Krótka linka asekuracyjna:</text>
+    <text x="566" y="143">od nosidła do kółka szelek, nigdy do obroży</text>
+
+    <text x="566" y="188">Klatka piersiowa oparta o Ciebie:</text>
+    <text x="566" y="205">ciepło i oparcie, czuje bicie Twojego serca</text>
+
+    <text x="566" y="226">Panel nosidła obejmuje plecy i zad,</text>
+    <text x="566" y="243">boki ściągnięte gumą pod wąską talię</text>
+
+    <text x="566" y="263">Tylne łapy złożone jak w siadzie</text>
+
+    <text x="566" y="284">Pianka 4 cm z wałkiem na brzegu:</text>
+    <text x="566" y="301">zad nie zsuwa się na zewnątrz</text>
+
+    <text x="566" y="322">Sztywne siedzisko biodrowe (limit min. 20 kg)</text>
+
+    <text x="16" y="126">Łapa w opatrunku leży</text>
+    <text x="16" y="143">na poduszce podróżnej</text>
+    <text x="16" y="160">(„rogal”) na Twoim ramieniu</text>
+
+    <text x="16" y="222">Szelki naramienne skrzyżowane</text>
+    <text x="16" y="239">na plecach: tylko dociągają</text>
+    <text x="16" y="256">Biankę do Ciebie</text>
+
+    <text x="16" y="302">Pas biodrowy na kościach</text>
+    <text x="16" y="319">biodrowych: niesie większość</text>
+    <text x="16" y="336">z 13 kg</text>
+
+    <text x="16" y="366">Ręce wolne: jedną dłonią</text>
+    <text x="16" y="383">możesz ją głaskać lub asekurować</text>
+  </g>
+
+  <!-- legenda kolorów -->
+  <g font-size="13.5" fill="#1f2328">
+    <rect x="566" y="560" width="16" height="12" fill="#2b8ca3"/><text x="590" y="571">panel i szelki z gotowego nosidła</text>
+    <rect x="566" y="582" width="16" height="12" fill="#3a3f47"/><text x="590" y="593">pas i siedzisko biodrowe (kupione, z atestem)</text>
+    <rect x="566" y="604" width="16" height="12" fill="#9aa3ae"/><text x="590" y="615">Twoje przeróbki: poduszka z wałkiem, „rogal”</text>
+    <rect x="566" y="626" width="16" height="12" fill="#c0392b"/><text x="590" y="637">szelki Bianki i linka asekuracyjna</text>
+    <rect x="566" y="648" width="16" height="12" fill="#d63384"/><text x="590" y="659">opatrunek (prawa przednia łapa)</text>
+  </g>
+</svg>
