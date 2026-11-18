@@ -1,6 +1,7 @@
 // =====================================================================
 //  Chassis PCC (konwersja na karabinek) do Walther PDP Full Size 4,5"
-//  v1 - druk FDM bez podpór, OpenSCAD 2021.01+
+//  v1.1 - druk FDM bez podpór, OpenSCAD 2021.01+
+//  Wartości domyślne: PETG na Bambu Lab P2S (stół 256 x 256 mm).
 //
 //  Koncepcja (jak w fabrycznych zestawach typu "20/20"):
 //    * dwie połówki (lewa/prawa) skręcane śrubami M5 zaciskają się na
@@ -93,9 +94,9 @@ tun_clr = 1.75;
 // Luz płyt od dźwigni i szkieletu na stronę
 ctrl_clr = 1.75;
 // Luz szkieletu w gnieździe na stronę
-frame_clr = 0.4;
+frame_clr = 0.45;
 // Luz na skosach szyny (mniejszy = ciaśniej)
-rail_clr = 0.15;
+rail_clr = 0.2;
 // Szczelina między połówkami pod szyną (docisk zacisku)
 clamp_gap = 0.5;
 // Luz między ogonem szkieletu a oporą tylną (do podklejenia gumą)
@@ -103,11 +104,11 @@ bt_gap = 1.5;
 // Luz zamka nad podłogą tunelu i nad nosem
 floor_gap = 2.5;
 // Luz pióra kolby w gnieździe na stronę
-tongue_clr = 0.2;
+tongue_clr = 0.25;
 
 /* [Chassis] */
-// Grubość pasa obok zamka
-strip_t = 9;
+// Grubość pasa obok zamka (PETG: 11; PA-CF wystarczy 9)
+strip_t = 11;
 // Górna krawędź pasów nad dolną krawędzią zamka
 z_top = 17.5;
 // Dolna krawędź pasów
@@ -115,13 +116,13 @@ z_s0 = 1.5;
 // Dolna krawędź płyt na wysokości szkieletu (nad palcem spustowym)
 z_f0 = -14;
 // Wysokość bloku zacisku pod szyną
-blk_h = 15;
+blk_h = 17;
 // Dolna krawędź podłogi tunelu
 z_floor0 = -14.5;
 // Dolna krawędź bloku tylnego
 z_rb0 = -27;
 // Długość bloku tylnego (gniazdo kolby)
-rb_len = 28;
+rb_len = 30;
 // Zapas tunelu za zamkiem w pełnym odrzucie
 tun_margin = 7;
 // Fazka krawędzi zewnętrznych
@@ -135,13 +136,14 @@ rod_clr = 0.6;
 // Wysokości osi prętów nad dolną krawędzią zamka
 rod_z = [5.6, 13.4];
 // Otwór przelotowy M5
-bolt_d = 5.4;
-// Gniazdo łba M5 DIN 912: średnica / głębokość
-head_d = 9.4;
-head_h = 5.5;
-// Nakrętka M5: rozmiar pod klucz + luz / głębokość gniazda
-nut_af = 8.3;
-nut_h = 5;
+bolt_d = 5.5;
+// Gniazdo łba M5 DIN 912 z podkładką DIN 125 (10 x 1 mm): średnica / głębokość.
+// Podkładka rozkłada nacisk łba - PETG pod samym łbem pełznie.
+head_d = 10.6;
+head_h = 6.5;
+// Nakrętka M5: rozmiar pod klucz + luz / głębokość gniazda (nyloc 5 mm)
+nut_af = 8.4;
+nut_h = 5.5;
 // Wysokość warstwy (do mostków nad gniazdami łbów i nakrętek)
 layer = 0.2;
 
@@ -191,11 +193,11 @@ tng_z1 = z_top - 4;
 x_butt = trig_x - lop;
 
 // śruby poprzeczne [x, z]
-rear_bolts = [[x_rear + 6, -6], [x_rear + 20, -6],
-              [x_rear + 6, -19], [x_rear + 20, -19]];
-floor_bolts = [[(x_tun + x_bt) / 2 - 2, (z_floor0 - floor_gap) / 2]];
+rear_bolts = [[x_rear + 8, -5], [x_rear + 21.5, -5],
+              [x_rear + 8, -19], [x_rear + 21.5, -19]];
+floor_bolts = [[(x_tun + x_bt) / 2 - 2, (z_floor0 - floor_gap) / 2 + 1.5]];
 clamp_bolts = [[x_rr + 4.7, z_clamp], [160, z_clamp],
-               [x_dc + 1.7, z_clamp], [x_nose - 6, -11]];
+               [x_dc + 1.7, z_clamp], [x_nose - 8, -11]];
 all_bolts = concat(rear_bolts, floor_bolts, clamp_bolts,
                    [for (x = lock_x) [x, z_lock]]);
 
@@ -240,6 +242,19 @@ module bolt_hole(hex = false) {
         cube([w, layer + eps, w]);
 }
 
+// Kanał pręta wzdłuż X. W druku "do góry" to -Y (obie połówki).
+module rod_channel(z) {
+    r = (rod_d + rod_clr) / 2;
+    translate([x_rear - 1, 0, 0]) rotate([90, 0, 90])
+        linear_extrude(rod_x1 - x_rear + 1) intersection() {
+            hull() {
+                translate([ych, z]) circle(r = r);
+                translate([ych - r * sqrt(2), z]) square(0.02, center = true);
+            }
+            translate([ych - r - 0.6, z - r - 1]) square([2 * r + 2, 2 * r + 2]);
+        }
+}
+
 // ---------------- połówka chassis (lewa, y >= 0) ----------------
 // Przekrój gniazda szyny i szkieletu (do wycięcia), płaszczyzna YZ
 function rail_cavity() = let (
@@ -255,10 +270,10 @@ function rail_cavity() = let (
 // obrysy boczne (płaszczyzna XZ)
 xe = x_s1 + (z_top - z_blk1);
 function p_strip() = [[x_rear, z_s0 - 0.1], [x_rear, z_top], [x_s1, z_top],
-    [xe, z_blk1], [xe, z_blk1 - 1], [xe - 5, z_blk1 - 1],
-    [xe - 5, z_s0 - 0.1]];
+    [xe, z_blk1], [xe, z_blk1 - 1], [xe - 7, z_blk1 - 1],
+    [xe - 7, z_s0 - 0.1]];
 function p_plate() = [[win_x1, z_s0], [win_x1, z_f0 + 4], [win_x1 + 4, z_f0],
-    [x_rr - 14, z_f0], [x_rr + 4.5, z_blk0], [x_rr + 5, z_blk0],
+    [x_rr - 18, z_f0], [x_rr + 1, z_blk0], [x_rr + 5, z_blk0],
     [x_rr + 5, z_blk1], [xe - 6, z_blk1], [xe - 6, z_s0]];
 function p_wall() = [[x_rear, z_rb0], [x_rear, z_s0], [x_bt, z_s0],
     [x_bt, z_floor0 + 5], [x_bt - 5, z_floor0],
@@ -314,9 +329,9 @@ module half(right = false) {
                 polygon([[ys_in - 0.1, z_s0 - 0.2], [ys_in + 3.2, z_s0 - 0.2],
                          [ys_in - 0.1, z_s0 + 3.1]]);
 
-        // kanały prętów zbrojących
-        for (z = rod_z) translate([x_rear - 1, ych, z]) rotate([0, 90, 0])
-            cylinder(d = rod_d + rod_clr, h = rod_x1 - x_rear + 1);
+        // kanały prętów zbrojących: kropla szpicem do góry w druku (-Y),
+        // ścięta 0,6 mm nad okręgiem - bez zwisającego sklepienia
+        for (z = rod_z) rod_channel(z);
 
         // gniazdo pióra kolby
         translate([x_rear - 1, -1, tng_z0])
@@ -465,8 +480,8 @@ module rail_gauge() {
         intersection() { chassis_R(); slab(); }
 }
 module profile_gauge() {
-    linear_extrude(1.2) offset(delta = 0.01) projection()
-        rotate([90, 0, 0]) chassis_R();
+    rotate([0, 0, print_rot]) linear_extrude(1.2) offset(delta = 0.01)
+        projection() rotate([90, 0, 0]) chassis_R();
 }
 
 // ---------------- wybór ----------------
